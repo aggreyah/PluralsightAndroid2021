@@ -6,6 +6,7 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,8 +16,11 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            val oldValue: Int = findViewById<TextView>(R.id.textViewName).text.toString().toInt()
+            val newValue: Int = oldValue * 2
+            findViewById<TextView>(R.id.textViewName).text = newValue.toString()
+            Snackbar.make(view, "Value: $oldValue changed to $newValue", Snackbar.LENGTH_LONG)
+                    .show()
         }
     }
 
