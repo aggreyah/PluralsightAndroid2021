@@ -16,9 +16,9 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            val oldValue: Int = findViewById<TextView>(R.id.textViewName).text.toString().toInt()
+            val oldValue: Int = this.findViewById<TextView>(R.id.textViewName).text.toString().toInt()
             val newValue: Int = oldValue * 2
-            findViewById<TextView>(R.id.textViewName).text = newValue.toString()
+            this.findViewById<TextView>(R.id.textViewName).text = newValue.toString()
             Snackbar.make(view, "Value: $oldValue changed to $newValue", Snackbar.LENGTH_LONG)
                     .show()
         }
