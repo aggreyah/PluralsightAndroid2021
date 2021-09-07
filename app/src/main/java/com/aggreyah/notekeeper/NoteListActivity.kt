@@ -2,6 +2,8 @@ package com.aggreyah.notekeeper
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -23,7 +25,7 @@ class NoteListActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-//        val navController = findNavController(R.id.nav_host_fragment_content_note_list)
+//        val navController = findNavContro ller(R.id.nav_host_fragment_content_note_list)
 //        appBarConfiguration = AppBarConfiguration(navController.graph)
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 
@@ -31,5 +33,9 @@ class NoteListActivity : AppCompatActivity() {
             val activityIntent = Intent(this, MainActivity::class.java)
             startActivity(activityIntent)
         }
+
+        val listNotes = ArrayAdapter(this,
+            android.R.layout.simple_list_item_1, DataManager.notes)
+        this.findViewById<ListView>(R.id.listNotes).adapter = listNotes
     }
 }
