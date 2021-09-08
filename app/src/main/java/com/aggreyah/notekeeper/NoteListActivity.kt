@@ -34,8 +34,7 @@ class NoteListActivity : AppCompatActivity() {
             startActivity(activityIntent)
         }
 
-        val listNotes = ArrayAdapter(this,
+        this.findViewById<ListView>(R.id.listNotes).adapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1, DataManager.notes)
-        this.findViewById<ListView>(R.id.listNotes).adapter = listNotes
     }
 }
