@@ -31,6 +31,10 @@ class MainActivity : AppCompatActivity() {
         if (notePosition != POSITION_NOT_SET) {
             displayNote()
         }
+        else{
+            DataManager.notes.add(NoteInfo())
+            notePosition = DataManager.notes.lastIndex
+        }
     }
 
     private fun displayNote() {
@@ -79,4 +83,17 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onPrepareOptionsMenu(menu)
     }
+
+    override fun onPause() {
+        super.onPause()
+        saveNote()
+    }
+
+    private fun saveNote() {
+        val note = DataManager.notes[notePosition]
+        note.noteText = this.findViewById<EditText>(R.id.textNoteText).text.toString()
+        note.noteTitle = this.findViewById<EditText>(R.id.textNoteTitle).text.toString()
+        note.course = this.findViewById<Spinner>(R.id.spinnerCourses).selectedItem as CourseInfo
+    }
+
 }

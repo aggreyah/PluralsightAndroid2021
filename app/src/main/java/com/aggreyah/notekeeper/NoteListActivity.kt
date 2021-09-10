@@ -43,5 +43,12 @@ class NoteListActivity : AppCompatActivity() {
             activityIntent.putExtra(EXTRA_NOTE_POSITION, position)
             startActivity(activityIntent)
         }
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (this.findViewById<ListView>(R.id.listNotes).adapter as ArrayAdapter<NoteInfo>).notifyDataSetChanged()
     }
 }
