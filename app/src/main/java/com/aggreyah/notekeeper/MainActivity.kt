@@ -1,15 +1,12 @@
 package com.aggreyah.notekeeper
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
-import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +24,9 @@ class MainActivity : AppCompatActivity() {
 
         this.findViewById<Spinner>(R.id.spinnerCourses).adapter = adapterCourses
 
-        notePosition = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
+        notePosition = savedInstanceState?.getInt(NOTE_POSITION, POSITION_NOT_SET) ?:
+            intent.getIntExtra(NOTE_POSITION, POSITION_NOT_SET)
+
         if (notePosition != POSITION_NOT_SET) {
             displayNote()
         }
@@ -96,4 +95,8 @@ class MainActivity : AppCompatActivity() {
         note.course = this.findViewById<Spinner>(R.id.spinnerCourses).selectedItem as CourseInfo
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(NOTE_POSITION, notePosition)
+    }
 }
